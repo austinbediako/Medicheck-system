@@ -1,4 +1,4 @@
-import { PrologResult } from '../types/index';
+import { PrologResult } from "../types/index";
 /**
  * runPrologInference
  *

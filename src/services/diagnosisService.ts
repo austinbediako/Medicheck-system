@@ -18,12 +18,12 @@ import {
 //   3. Persist result to PostgreSQL
 //   4. Return structured response
 // ---------------------------------------------------------------------------
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 export async function runDiagnosis(req: DiagnosisRequest): Promise<DiagnosisResponse> {
-  const {
-    symptoms,
-    symptom_duration = 'unknown',
-    session_id = uuidv4(),
-  } = req;
+  const { symptoms, symptom_duration = 'unknown' } = req;
+  const session_id =
+    req.session_id && UUID_RE.test(req.session_id) ? req.session_id : uuidv4();
 
   if (!symptoms || symptoms.length === 0) {
     throw new Error('At least one symptom must be provided.');
