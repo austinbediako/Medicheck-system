@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: medicheck-system
+    runtime: node
+    buildCommand: pnpm install && pnpm run build
+    startCommand: pnpm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: PORT
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false

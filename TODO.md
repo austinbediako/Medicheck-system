@@ -120,6 +120,7 @@ Required test scenarios to implement (with Jest + supertest for API tests, or di
 | `.js` extensions on relative imports caused MODULE_NOT_FOUND with ts-node (CommonJS) | all `src/*.ts` | Stripped `.js` from all relative imports | **Fixed 2026-03-24** |
 | `invalid input syntax for type uuid` when client sends non-UUID session_id (e.g. `"test-session-123"`) | `diagnosisService.ts` | Added UUID regex validation — invalid values fall back to `uuidv4()` | **Fixed 2026-03-24** |
 | `@types/jest` missing caused `tsc` build failure on test files | `tsconfig.json` | Excluded `src/tests/**/*` from main build; installed `@types/jest` | **Fixed 2026-03-24** |
+| Render deploy failing: `ts-node: not found` — build ran `pnpm install` only, start ran `pnpm dev` (uses ts-node devDep) | Render config | Added `render.yaml`: build = `pnpm install && pnpm run build`, start = `pnpm start` | **Fixed 2026-03-24** |
 
 | Issue | Location | Severity | Status |
 |-------|----------|----------|--------|
