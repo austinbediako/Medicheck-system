@@ -41,15 +41,22 @@ app.use((_req, res) => {
 });
 
 // ---------------------------------------------------------------------------
-// Start
+// Start — run DB migration first, then open the port
 // ---------------------------------------------------------------------------
-app.listen(PORT, () => {
-  console.log(`[MediCheck] Server running on http://localhost:${PORT}`);
-  console.log(`[MediCheck] Endpoints:`);
-  console.log(`  GET  /health`);
-  console.log(`  GET  /api/symptoms`);
-  console.log(`  POST /api/diagnosis`);
-  console.log(`  GET  /api/history/:sessionId`);
-});
+initDb()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`[MediCheck] Server running on http://localhost:${PORT}`);
+      console.log(`[MediCheck] Endpoints:`);
+      console.log(`  GET  /health`);
+      console.log(`  GET  /api/symptoms`);
+      console.log(`  POST /api/diagnosis`);
+      console.log(`  GET  /api/history/:sessionId`);
+    });
+  })
+  .catch((err) => {
+    console.error('[MediCheck] Startup failed — could not initialise database:', err.message);
+    process.exit(1);
+  });
 
 export default app;
