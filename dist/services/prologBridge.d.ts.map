@@ -1,1 +1,1 @@
-{"version":3,"file":"prologBridge.d.ts","sourceRoot":"","sources":["../../src/services/prologBridge.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,YAAY,EAAE,MAAM,gBAAgB,CAAC;AAkB9C;;;;;;;;GAQG;AACH,wBAAsB,kBAAkB,CACtC,QAAQ,EAAE,MAAM,EAAE,EAClB,eAAe,GAAE,MAAkB,GAClC,OAAO,CAAC,YAAY,CAAC,CA4FvB"}
+{"version":3,"file":"prologBridge.d.ts","sourceRoot":"","sources":["../../src/services/prologBridge.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,YAAY,EAAE,MAAM,gBAAgB,CAAC;AAmB9C;;;;;;;;GAQG;AACH,wBAAsB,kBAAkB,CACtC,QAAQ,EAAE,MAAM,EAAE,EAClB,eAAe,GAAE,MAAkB,GAClC,OAAO,CAAC,YAAY,CAAC,CA+FvB"}

@@ -1,6 +1,7 @@
 import { spawn } from "child_process";
 import path from "path";
 import { PrologResult } from "../types/index";
+import { runTsInference } from "./tsInferenceEngine";
 
 // Path to bridge.pl relative to project root
 const BRIDGE_PL = path.resolve(__dirname, "../../prolog/bridge.pl");
@@ -111,12 +112,15 @@ export async function runPrologInference(
     proc.on("error", (err) => {
       clearTimeout(timer);
       if ((err as NodeJS.ErrnoException).code === "ENOENT") {
-        reject(
-          new Error(
-            `SWI-Prolog (swipl) not found. Install it: https://www.swi-prolog.org/Download.html` +
-              (swiplCmd !== "swipl" ? ` (tried: ${swiplCmd})` : ""),
-          ),
+        // swipl not installed — fall back to built-in TypeScript inference engine
+        console.warn(
+          "[MediCheck] swipl not found — using TypeScript inference engine fallback.",
         );
+        try {
+          resolve(runTsInference(symptoms, symptomDuration));
+        } catch (tsErr) {
+          reject(tsErr);
+        }
       } else {
         reject(new Error(`Failed to spawn swipl: ${err.message}`));
       }
