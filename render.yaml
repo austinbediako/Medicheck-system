@@ -1,9 +1,8 @@
 services:
   - type: web
     name: medicheck-system
-    runtime: node
-    buildCommand: pnpm install && pnpm run build
-    startCommand: node dist/scripts/initDb.js && pnpm start
+    runtime: docker
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: NODE_ENV
         value: production
